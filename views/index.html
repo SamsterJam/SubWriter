@@ -1,68 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Open AI API Caller</title>
-        <link rel="stylesheet" type="text/css" href="css/main.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-        <style> @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); </style>
-        <link rel="icon" type="image/x-icon" href="/img/aisite.ico">
-        <script src="https://kit.fontawesome.com/c4516edd08.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8">
+    <title>SubWriter</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300&display=swap" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Chivo:wght@300&display=swap');
+    </style>
+    <link rel="icon" type="image/x-icon" href="/img/SubWriterIcon.ico">
+    <script src="https://kit.fontawesome.com/c4516edd08.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <span id="mainArea">
-      <textarea id="prompt" onkeyup="clearGhostText()" autocapitalize="false" spellcheck="true"></textarea>
-      <textarea id="ghost-text" disabled="true"></textarea>
-      <button id="submit-button" onclick="apiCallTestSubmit()">Submit</button> 
-      <span class="loader"><span></span><span></span><span></span></span>
-    </span>
+    <textarea id="prompt" oninput="clearGhostText()" autocapitalize="false" spellcheck="true" contenteditable="true"></textarea>
+    <textarea id="ghost-text" disabled="true" contenteditable="false">
+Welcome to SubWriter, a minimalistic AI-assisted writing tool. To use Cesium, begin writing and when you need a suggestion, hold [ctrl] or [cmd] and press [Enter]. The AI will suggest a completion, which you are free to edit and change.
 
-    <span id="menu">
-      <div class="menu-item">
-        <h2>Model</h2>
-        <select name="cars" id="model-selection">
-          <option value="volvo">text-davinci-003</option>
-          <option value="saab">text-curie-001</option>
-          <option value="opel">text-babbage-001</option>
-          <option value="audi">text-ada-001</option>
-        </select>
-      </div>
-      <div class="menu-item">
-        <h2>Temperature</h2>
-        <span class="slider-field">
-          <input type="range" min="0" max="1" value="0.5" step="0.05" class="slider" id="temperature-selection">
-          <h3 id="selected-temp-value">1</h3>
-        </span>
-      </div>
-      <div class="menu-item">
-        <h2>Max Length</h2>
-        <span class="slider-field">
-          <input type="range" step="2" min="16" max="512" value="256" class="slider" id="length-selection">
-          <h3 id="selected-length-value">1</h3>
-        </span>
-      </div>
-      <div class="menu-item">
-        <h2>Frequency Penalty</h2>
-        <span class="slider-field">
-          <input type="range" min="0" max="2" step="0.1" value="1" class="slider" id="frequency-selection">
-          <h3 id="selected-frequency-value">1</h3>
-        </span>
-      </div>
-      <div class="menu-item">
-        <h2>Presence Penalty</h2>
-        <span class="slider-field">
-          <input type="range" min="0" max="2" step="0.1" value="1" class="slider" id="presence-selection">
-          <h3 id="selected-presence-value">1</h3>
-        </span>
-      </div>
-      <div class="menu-item">
-        <h2>API Key:</h2>
-        <input maxlength="100" type="password" autocapitalize="off" autocomplete="off" spellcheck="false" id="API-Key" onfocus="showKey()" onblur="hideKey()"><br>
-      </div>
+
+—— Usage ——
+
+The model used is GPT-3 (text-davinci-03). Since this is a paid model, you must provide your API key in the address bar in the format shown below:
+
+jamtown.netmillers.com:8000/?key=sk-••••••••••••••••••••••••••••••••••
+
+
+—— Advanced ——
+
+For advanced use, you can provide the following parameters, which are defaulted to the below values:
+
+&temp=0.3 (0.0-1.0)
+&len=100;   (1-1024)
+&freq=1.5;      (0.0-2.0) (frequency penalty and presence penalty are tied to the same value)
+
+This website is still in early development and has many changes to come, including customizations, a settings menu, and more advanced AI features. There is no way to report bugs yet, so please be patient, as the website is still under development.
+
+    </textarea>
+    <span class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
     </span>
   </body>
   <script src="js/apiCaller.js"></script>
 </html>
-
