@@ -71,14 +71,22 @@ function apiCallTestSubmit(){
     //Disable prompt
     var promptText = document.getElementById("prompt");
     promptText.disabled = true;
-    promptText.style="background-color: #17171a;"
+    document.body.style="background-color: #17171a;"
     prompt = promptText.value;
 
     //set color of loader to random
-    var loadColors = ['#98c379', '#61afef', '#c678dd', '#de6a73', '#d19a66'];
-    var random_color = loadColors[Math.floor(Math.random() * loadColors.length)];
+    var loadColors = ['#70c1cc', '#cb83e6', '#78baf8', '#ebc885', '#a8cd84', "#e0727e"];
     var loader = document.getElementsByClassName("loader")[0];
-    loader.firstElementChild.style.background = random_color;
+    var bars = loader.children;
+    var usedColors = [];
+    for (let i = 0; i < bars.length; i++) {
+        var random_color = loadColors[Math.floor(Math.random() * loadColors.length)];
+        while (usedColors.includes(random_color)) {
+            random_color = loadColors[Math.floor(Math.random() * loadColors.length)];
+        } 
+        bars[i].style.background = random_color;
+        usedColors.push(random_color);
+    }
 
 
     document.getElementsByClassName("loader")[0].style="visibility: visible";
@@ -92,8 +100,7 @@ function apiCallTestSubmit(){
         body: JSON.stringify({ "model": 'text-davinci-003', "prompt": prompt, "temperature": parseFloat(temp), "length": parseInt(length), "frequency": parseFloat(frequency), "presence": parseFloat(frequency), "apiKey": apiKey})
     })
     .then(response => response.json())
-    .then(response => updateWithData(response))
-    
+    .then(response => updateWithData(response));
 
 };
 
@@ -105,13 +112,14 @@ function updateWithData(response){
         document.getElementById("ghost-text").value = document.getElementById("prompt").value + ' [API ERROR]';
     }else{
         document.getElementById("prompt").value += String(response.choices[0].text);
-
     }
 
     var promptObj = document.getElementById("prompt");
     promptObj.disabled = false;
-    promptObj.style="background-color: #202124;";
-    prompt.scrollTop = prompt.scrollHeight;
+    document.body.style="background-color: #202124;";
+    promptObj.scrollTop = promptObj.scrollHeight;
+    syncGhost();
+
 
     document.getElementsByClassName("loader")[0].style="visibility: hidden";
     
@@ -121,7 +129,11 @@ function updateWithData(response){
 
 
 
+function toggleMenu(){
+    console.log("menu");
+}
 
 
-
-
+function syncGhost(){
+    document.getElementById("ghost-text").scrollTop = document.getElementById("prompt").scrollTop;
+}

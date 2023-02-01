@@ -1,13 +1,20 @@
 html {
-    background-color: #1d1e23;
+    background-color: #202124;
     font-family: 'Chivo', sans-serif;
     overflow: hidden;
+    height: 100%;
 }
 
 
 body{
   padding: 0;
   margin: 0;
+  background-color: #202124;
+  display: flexbox;
+  flex-direction: row;
+  height: 100%;
+  overflow: auto;
+  overscroll-behavior-y: none;
 }
 
 #prompt{
@@ -34,11 +41,24 @@ body{
     box-shadow: none;
     
     font-family: 'Chivo', sans-serif;
-    background-color: #202124;
+    background: transparent;
     color: #abb2bf;
 
-    font-size: clamp(17px, 1.5vw, 19px);
+    font-size: clamp(17px, 1.25vw, 19px);
+
+    z-index: 1;
     
+    
+}
+
+::-moz-selection { /* Code for Firefox */
+  color: #70c1cc;
+  background: #50545b;
+}
+
+::selection {
+  color: #70c1cc;
+  background: #50545b;
 }
 
 #ghost-text{
@@ -64,15 +84,22 @@ body{
   box-shadow: none;
   
   font-family: 'Chivo', sans-serif;
-  background-color: #202124;
-  color: white;
+  background: transparent;
+  color: #abb2bf;
 
-  font-size: clamp(17px, 1.5vw, 19px);
+  z-index: 0;
+
+  font-size: clamp(17px, 1.25vw, 19px);
 
   opacity: 25%;
   background-color: transparent;
   resize: none;
   pointer-events:none;
+
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 
 
@@ -92,6 +119,11 @@ body{
   max-height: 100px;
 }
 
+
+
+.settings{
+  cursor:pointer;
+}
 
 
 
@@ -148,6 +180,7 @@ body{
     left: 50%;
     transform: translate(-50%,50%);
     visibility: hidden;
+    z-index: 2;
 
   }
   .loader span {
