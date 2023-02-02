@@ -44,7 +44,7 @@ body{
     background: transparent;
     color: #abb2bf;
 
-    font-size: clamp(17px, 1.25vw, 19px);
+    font-size: clamp(20px, 2vh, 48px);
 
     z-index: 1;
     
@@ -89,7 +89,7 @@ body{
 
   z-index: 0;
 
-  font-size: clamp(17px, 1.25vw, 19px);
+  font-size: clamp(20px, 2vh, 48px);
 
   opacity: 25%;
   background-color: transparent;
@@ -128,7 +128,7 @@ body{
   color: #abb2bf;
   right: 5px;
   top: 5px;
-  font-size: 35px;
+  font-size: clamp(35px, 4vh, 48px);
   font-weight: 400;
 }
 
@@ -142,11 +142,9 @@ body{
 #submitButton{
   position: fixed;
   bottom: 5px;
-  right: 5px;
   background-color: #a8cd84;
   color: #41444a;
   border-radius: 10px;
-  padding: 10px;
   visibility: hidden;
   -webkit-appearance: none;
 
@@ -160,7 +158,11 @@ body{
 
   border: none;
   outline: none;
-  max-width: 45px;
+  
+  padding: 10px;
+  right: clamp(5px, 0.5vh, 48px);
+  font-size: clamp(20px, 3vh, 48px);
+  width: auto;
 }
 
 #submitButton:active{
