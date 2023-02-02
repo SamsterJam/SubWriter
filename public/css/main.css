@@ -76,7 +76,7 @@ body{
   box-sizing: border-box;
   resize: none;
   border: none;
-  overflow: auto;
+  overflow: hidden;
   outline: none;
 
   -webkit-box-shadow: none;
@@ -120,18 +120,106 @@ body{
 }
 
 
+#settings{
+  z-index: 5;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  color: #abb2bf;
+  right: 5px;
+  top: 5px;
+  font-size: 35px;
+  font-weight: 400;
+}
 
-.settings{
-  cursor:pointer;
+#settings:active{
+  color: #7d828c;
 }
 
 
+
+
+#submitButton{
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  background-color: #a8cd84;
+  color: #41444a;
+  border-radius: 10px;
+  padding: 10px;
+  visibility: hidden;
+  -webkit-appearance: none;
+
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+
+  cursor: pointer;
+  z-index: 5;
+
+  border: none;
+  outline: none;
+  max-width: 45px;
+}
+
+#submitButton:active{
+  background: #74905a;
+}
+
+
+
+
+#menu{
+  outline-color: white;
+  outline-width: 1px;
+  border-color: white;
+  border-width: 1px;
+  background-color: #32363d;
+  z-index: 4;
+  visibility: hidden;
+
+  position: absolute;
+  right: 0;
+  height: 99%;
+  max-height: 650px;
+  width: 225px;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  text-align: center;
+  color: #abb2bf;
+  border-radius: 15px 0px 0px 15px;
+
+  font-size: 20px;
+  padding-top: 10px;
+}
+
+.menu-item{
+  /*border: 2px solid blue;*/
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+
+.slider-field{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  vertical-align: middle;
+  width: 200px;
+}
 
 /* The slider itself */
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 60%; /* Full-width */
+  width: 200px; /* Full-width */
   height: 8px; /* Specified height */
   background: #596173; /* Grey background */
   outline: none; /* Remove outline */
@@ -161,10 +249,43 @@ body{
 }
 
 
+#model-selection{
+  color: white;
+  background-color: #242830;
+  outline: 0px;
+  border: 0px;
+  padding: 5px;
+  font-size: large;
+  border-radius: 10px;
+}
 
+#API-Key{
+  background-color: #242830;
+  outline: 0px;
+  border: 0px;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  width: 90%;
+}
 
+h2{
+  color: white;
+  font-size: 22px;
+  margin: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-weight: 500;
+}
 
-
+h3{
+  color: white;
+  min-width: 40px;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 0px;
+  font-weight: 500;
+}
 
 
 

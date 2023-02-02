@@ -12,30 +12,69 @@
     <script src="https://kit.fontawesome.com/c4516edd08.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <textarea id="prompt" onscroll="syncGhost()" oninput="clearGhostText()" autocapitalize="false" spellcheck="true" contenteditable="true"></textarea>
-    <textarea id="ghost-text" disabled="true" contenteditable="false">
-Welcome to SubWriter, a minimalistic AI-assisted writing tool. To use Cesium, begin writing and when you need a suggestion, hold [ctrl] or [cmd] and press [Enter]. The AI will suggest a completion, which you are free to edit and change.
+    <textarea id="prompt" onscroll="syncGhost()" oninput="clearGhostText()" autocapitalize="false" spellcheck="true"></textarea>
+    <textarea id="ghost-text" disabled="true">
+Welcome to Catalyst, a minimalistic AI-assisted writing tool. To use Catalyst, begin writing and when you need a suggestion, hold [ctrl] or [cmd] and press [Enter]. The AI will suggest a completion, which you are free to edit and change.
 
 
 —— Usage ——
 
-The model used is GPT-3 (text-davinci-03). Since this is a paid model, you must provide your API key in the address bar in the format shown below:
+The AI language model used is GPT-3. Since this is a paid model, you must provide your API key. To do so, open the settings menu and supply your API key. (Your key is not recorded or stored)
 
-jamtown.netmillers.com:8000/?key=sk-••••••••••••••••••••••••••••••••••
+Adjusting the settings will generate a URL for you to save/bookmark to keep your settings each session.
 
-
-—— Advanced ——
-
-For advanced use, you can provide the following parameters, which are defaulted to the below values:
-
-&temp=0.3 (0.0-1.0)
-&len=100;   (1-1024)
-&freq=1.5;      (0.0-2.0) (frequency penalty and presence penalty are tied to the same value)
-
-This website is still in early development and has many changes to come, including customizations, a settings menu, and more advanced AI features. There is no way to report bugs yet, so please be patient, as the website is still under development.
-
+This site is still in early access and may see some bugs and major changes.
     </textarea>
-    <span class="material-symbols-outlined settings" onclick="toggleMenu()" style="user-select: none; position: absolute; color: #abb2bf; right: 5px; top: 5px; font-size: 35px;">settings</span>
+
+    <span class="material-symbols-outlined" id="settings" onclick="toggleMenu()">settings</span>
+
+    <button class="material-symbols-outlined" id="submitButton" onclick="apiCallTestSubmit()">done</button>
+
+    <span id="menu">
+      <div class="menu-item">
+        <h2>Model</h2>
+        <select name="cars" id="model-selection" onchange="updateBar('mod', this.selectedIndex) ">
+          <option value="volvo">text-davinci-003</option>
+          <option value="saab">text-curie-001</option>
+          <option value="opel">text-babbage-001</option>
+          <option value="audi">text-ada-001</option>
+        </select>
+      </div>
+      <div class="menu-item">
+        <h2>Temperature</h2>
+        <span class="slider-field">
+          <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="temperature-selection">
+          <h3 id="selected-temp-value">1</h3>
+        </span>
+      </div>
+      <div class="menu-item">
+        <h2>Max Length</h2>
+        <span class="slider-field">
+          <input type="range" step="2" min="4" max="128" value="64" class="slider" id="length-selection">
+          <h3 id="selected-length-value">1</h3>
+        </span>
+      </div>
+      <div class="menu-item">
+        <h2>Frequency Penalty</h2>
+        <span class="slider-field">
+          <input type="range" min="0" max="2" step="0.1" value="1" class="slider" id="frequency-selection">
+          <h3 id="selected-frequency-value">1</h3>
+        </span>
+      </div>
+      <div class="menu-item">
+        <h2>Presence Penalty</h2>
+        <span class="slider-field">
+          <input type="range" min="0" max="2" step="0.1" value="1" class="slider" id="presence-selection">
+          <h3 id="selected-presence-value">1</h3>
+        </span>
+      </div>
+      <div class="menu-item">
+        <h2>API Key:</h2>
+        <input maxlength="100" type="password" autocapitalize="off" autocomplete="off" spellcheck="false" id="API-Key" onfocus="showKey()" onblur="hideKey()"><br>
+      </div>
+    </span>
+
+
     <span class="loader">
       <span></span>
       <span></span>
